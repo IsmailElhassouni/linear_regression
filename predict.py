@@ -26,7 +26,7 @@ def main():
     
     try:
         user_mileage = float(input("Enter the car mileage (km): "))
-        predicted_price = estimate_price(normalize(user_mileage,mi,ma), theta0, theta1)
+        predicted_price = estimate_price(theta0, theta1, normalize(user_mileage,mi,ma))
         print(f"Estimated Price: ${predicted_price:,.2f}")
     except ValueError:
         print("Please enter a valid number.")

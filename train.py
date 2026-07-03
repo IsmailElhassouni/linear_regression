@@ -7,16 +7,18 @@ def normalize(x,min,max):
     return (x - min)/(max - min)
 
 def load():
-    with  open("data1.csv","r") as f:
-        reader = csv.reader(f)
-        next(reader)
-        prices =[]
-        km = []
-        for line in reader:
-                km.append(float(line[0]))
-                prices.append(float(line[1]))
-        return prices,km
-
+    try:
+        with  open("data.csv","r") as f:
+            reader = csv.reader(f)
+            next(reader)
+            prices =[]
+            km = []
+            for line in reader:
+                    km.append(float(line[0]))
+                    prices.append(float(line[1]))
+            return prices,km
+    except:
+        exit(print("no data to train"))
 def train(learning_rate=0.01,iterations=50000):
     prices,km = load()
     theta0 = 0
@@ -36,4 +38,5 @@ def train(learning_rate=0.01,iterations=50000):
         theta1 = tmp1
     with open('thetas','w') as f:
         f.write(f"{theta0}\n{theta1}\n{mi}\n{ma}")
-train()
+if __name__ == "__main__":
+    train()
